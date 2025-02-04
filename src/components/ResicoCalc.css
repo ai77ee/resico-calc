@@ -1,0 +1,130 @@
+:root {
+    --primary-color: #61677c;
+    --background-color: #ecf0f3;
+    --input-background: #ebecf0;
+    --box-shadow-color: #babecc;
+    --button-hover-shadow: #babecc;
+    --button-active-shadow: #babecc;
+    --font-size: 0.9rem;
+    --border-radius: 320px;
+    --input-padding: 16px;
+    --font-family: 'Nunito Sans', serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: var(--primary-color);
+    font-family: 'Nunito Sans', serif;
+    letter-spacing: -0.2px;
+    font-size: var(--font-size);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.input-container {
+    text-align: center;
+    width: 350px;
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: var(--background-color);
+    box-shadow: 14px 14px 20px var(--box-shadow-color), -14px -14px 20px white;
+}
+
+label {
+    font-size: var(--font-size);
+    display: flex;
+    flex-direction: column;
+    
+}
+
+button,
+input, .snackbar {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border: 0;
+    outline: 0;
+    font-size: var(--font-size);
+    border-radius: var(--border-radius);
+    padding: var(--input-padding);
+    background-color: var(--input-background);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+input {
+    margin-right: 8px;
+    box-shadow: inset 2px 2px 5px var(--box-shadow-color), inset -5px -5px 10px white;
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+input:focus {
+    box-shadow: inset 1px 1px 2px var(--box-shadow-color), inset -1px -1px 2px white;
+}
+
+input[readonly] {
+    background-color: #dce9f0;
+    color: var(--primary-color);
+}
+
+button {
+    font-weight: bold;
+    box-shadow: -5px -5px 20px white, 5px 5px 20px var(--box-shadow-color);
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: -2px -2px 5px white, 2px 2px 5px var(--button-hover-shadow);
+}
+
+button:active {
+    box-shadow: inset 1px 1px 2px var(--button-active-shadow), inset -1px -1px 2px white;
+}
+
+
+.snackbar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: -5px -5px 20px white, 5px 5px 20px var(--box-shadow-color);
+    backdrop-filter: blur(10px);
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
