@@ -109,6 +109,28 @@ button:active {
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+@media screen and (max-width: 480px){
+    .snackbar {
+    bottom: 620px;
+    }
+    .container {
+    height: 80vh;
+    }
+    .input-container {
+    width: 300px;
+    padding: 20px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .snackbar {
+        bottom: 460px;
+    }
+    .container {
+    height: 100vh;
+    }
+}
+
 @keyframes fadein {
     from {
         opacity: 0;
