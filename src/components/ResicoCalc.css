@@ -8,7 +8,6 @@
     --font-size: 0.9rem;
     --border-radius: 320px;
     --input-padding: 16px;
-    --font-family: 'Nunito Sans', serif;
 }
 
 *,
@@ -20,9 +19,9 @@
 body {
     margin: 0;
     color: var(--primary-color);
-    font-family: 'Nunito Sans', serif;
     letter-spacing: -0.2px;
     font-size: var(--font-size);
+    
 }
 
 .container {
@@ -63,25 +62,32 @@ input, .snackbar {
     transition: all 0.3s ease;
 }
 
-input {
+input[type="number"]{
     margin-right: 8px;
     box-shadow: inset 2px 2px 5px var(--box-shadow-color), inset -5px -5px 10px white;
     width: 100%;
     box-sizing: border-box;
     appearance: none;
     -webkit-appearance: none;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-input:focus {
+input[type="number"]focus {
     box-shadow: inset 1px 1px 2px var(--box-shadow-color), inset -1px -1px 2px white;
 }
 
-input[readonly] {
+input[type="number"][readonly] {
     background-color: #dce9f0;
     color: var(--primary-color);
 }
-
+.radio-group {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+   
+}
 button {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: bold;
     box-shadow: -5px -5px 20px white, 5px 5px 20px var(--box-shadow-color);
     cursor: pointer;

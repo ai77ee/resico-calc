@@ -14,11 +14,23 @@ const TAX_RATES = {
   TOTAL_RATE: 1.1475
 };
 
-const calculateResult = (value: number): Results => {
+const calculateResultResico = (value: number): Results => {
   const subtotal = value / TAX_RATES.TOTAL_RATE;
   const iva = subtotal * TAX_RATES.IVA;
   const isr = subtotal * TAX_RATES.ISR;
-  
+
+  return {
+    subtotal: Number(subtotal.toFixed(3)),
+    iva: Number(iva.toFixed(3)),
+    isr: Number(isr.toFixed(3)),
+  };
+};
+
+const calculateResultNormal = (value: number): Results => {
+  const subtotal = value / (1 + TAX_RATES.IVA);
+  const iva = subtotal * TAX_RATES.IVA;
+  const isr = 0; // No ISR para tipo normal
+
   return {
     subtotal: Number(subtotal.toFixed(3)),
     iva: Number(iva.toFixed(3)),
@@ -34,11 +46,12 @@ const ResicoCalc = () => {
   const [inputValue, setInputValue] = useState<number | ''>('');
   const [results, setResults] = useState<Results>({ subtotal: 0, iva: 0, isr: 0 });
   const [snackbarMessage, setSnackbarMessage] = useState<string | null>(null);
+  const [tipo, setTipo] = useState<'resico' | 'normal'>('resico');
 
   const handleInputChange = (event: Event) => {
     const input = event.target as HTMLInputElement;
     const value = input.value;
-    
+
     if (value === '') {
       setInputValue('');
       setResults({ subtotal: 0, iva: 0, isr: 0 });
@@ -48,7 +61,7 @@ const ResicoCalc = () => {
     const numericValue = parseFloat(value);
     if (!isNaN(numericValue)) {
       setInputValue(numericValue);
-      setResults(calculateResult(numericValue));
+      setResults(tipo === 'resico' ? calculateResultResico(numericValue) : calculateResultNormal(numericValue));
     }
   };
 
@@ -78,6 +91,29 @@ const ResicoCalc = () => {
     <div className="container">
       <div className="input-container">
         <h2>RESICO Calc</h2>
+        <div className="radio-group">
+          <label>
+            <input
+              type="radio"
+              name="tipo"
+              value="resico"
+              checked={tipo === 'resico'}
+              onChange={(e) => setTipo((e.target as HTMLInputElement).value as 'resico' | 'normal')}
+            />
+            RESICO
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="tipo"
+              value="normal"
+              checked={tipo === 'normal'}
+              onChange={(e) => setTipo((e.target as HTMLInputElement).value as 'resico' | 'normal')}
+            />
+            Normal
+          </label>
+        </div>
+
         <label>
           Cantidad
           <input
